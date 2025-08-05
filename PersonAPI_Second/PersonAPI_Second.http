@@ -1,0 +1,6 @@
+@PersonAPI_Second_HostAddress = http://localhost:5231
+
+GET {{PersonAPI_Second_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

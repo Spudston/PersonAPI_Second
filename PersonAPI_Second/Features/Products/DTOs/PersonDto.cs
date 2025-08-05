@@ -1,0 +1,1 @@
+﻿public record PersonDto(Guid Id, string FirstName, string LastName, DateOnly DOB, string Address);
