@@ -99,7 +99,7 @@ namespace PersonTests
 
             var updatedPerson= new UpdatePersonCommand(Guid.Parse("00000000-0000-0000-0000-000000000001"), "Bart", "Simpson", updatedDOB, "742 Evergreen Terrace");
 
-            var updatedResponse = await client.PostAsJsonAsync($"/api/Person/{personId}", updatedPerson);
+            var updatedResponse = await client.PatchAsJsonAsync($"/api/Person/{personId}", updatedPerson);
 
             updatedResponse.EnsureSuccessStatusCode();
 

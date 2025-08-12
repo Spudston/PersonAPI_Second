@@ -14,6 +14,7 @@ namespace PersonAPI_Second.Controllers
             mediatr = mediator;
         }
 
+        /// Including ("{id}") is to specify the entity that we want to reach (without it, it would look as if we want to modify the entire directory, unless specified WITHIN the function- this is more risky)
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPersonById(Guid id)
         {
@@ -23,7 +24,7 @@ namespace PersonAPI_Second.Controllers
                 return Ok(person);
         }
 
-        [HttpPost]
+        [HttpPost("{id}")]
         public async Task<IActionResult> CreatePerson(CreatePersonCommand command)
         {
             var personId = await mediatr.Send(command);
@@ -35,7 +36,7 @@ namespace PersonAPI_Second.Controllers
             return Created($"/people/{personId}", new { id = personId });
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePerson(Guid id)
         {
             await mediatr.Send(new DeletePersonCommand(id));
@@ -43,7 +44,7 @@ namespace PersonAPI_Second.Controllers
             return NoContent();
         }
 
-        [HttpPatch]
+        [HttpPatch("{id}")]
         public async Task<IActionResult> PatchPerson(UpdatePersonCommand command)
         {
             var personId = await mediatr.Send(command);
