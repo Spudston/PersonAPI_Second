@@ -25,23 +25,5 @@ namespace PersonAPI_Second.Persistence
 
             base.OnModelCreating(modelBuilder);
         }
-
-
-        /// This doesn't work because it has the Guid changing each time the code is run- find a way to prevent a new instance of an entity being made
-        /// if a previous instance has the exact same details, maybe- but this could be problematic in practice due to multiple people potentially having the same exact
-        /// details (even if it's borderline impossible)
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Person>().HasKey(x => x.Id);
-        //    modelBuilder.Entity<Person>().HasData(
-        //        new Person("Casper", "Mohabaty", DateOnly.FromDateTime(DateTime.Parse("2005-04-16")), "100 Charming Avenue"),
-        //        new Person("Flerbert", "Schminkledorf", DateOnly.FromDateTime(DateTime.Parse("2000-01-01")), "Wazzaaaaaa")
-        //        );
-        //}
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseInMemoryDatabase("CasperDB"); // Change to SQL Database
-        //}
     }
 }

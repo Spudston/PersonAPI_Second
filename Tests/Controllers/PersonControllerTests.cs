@@ -1,11 +1,9 @@
-﻿using Azure;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using PersonAPI_Second.Controllers;
 using PersonAPI_Second.Domain;
 using PersonAPI_Second.Features.Validators;
-using System.ComponentModel.DataAnnotations;
 using Xunit;
 using Assert = Xunit.Assert;
 
@@ -53,7 +51,6 @@ namespace PersonAPI_Second.Tests.Unit
         {
             // ARRANGE
             var personId = Guid.NewGuid();
-            var x = 0;
 
             mockMediator.Setup(m => m.Send(It.Is<GetPersonQuery>(q => q.Id == personId), It.IsAny<CancellationToken>()))
                 .ReturnsAsync((PersonDto?) null );

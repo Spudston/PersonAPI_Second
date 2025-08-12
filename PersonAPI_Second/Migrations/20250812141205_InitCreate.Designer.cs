@@ -12,7 +12,7 @@ using PersonAPI_Second.Persistence;
 namespace PersonAPI_Second.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250730110519_InitCreate")]
+    [Migration("20250812141205_InitCreate")]
     partial class InitCreate
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace PersonAPI_Second.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.7")
+                .HasAnnotation("ProductVersion", "9.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -38,6 +38,12 @@ namespace PersonAPI_Second.Migrations
                     b.Property<DateOnly>("DOB")
                         .HasColumnType("date");
 
+                    b.Property<int>("DisplayId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DisplayId"));
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -49,24 +55,6 @@ namespace PersonAPI_Second.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Persons");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("de4ed0ca-52f2-47fb-b9f4-48d1ffd7417c"),
-                            Address = "100 Charming Avenue",
-                            DOB = new DateOnly(2005, 4, 16),
-                            FirstName = "Casper",
-                            LastName = "Mohabaty"
-                        },
-                        new
-                        {
-                            Id = new Guid("f2df542a-2a2e-4f66-b5d5-0af9722f11f7"),
-                            Address = "Wazzaaaaaa",
-                            DOB = new DateOnly(2000, 1, 1),
-                            FirstName = "Flerbert",
-                            LastName = "Schminkledorf"
-                        });
                 });
 #pragma warning restore 612, 618
         }

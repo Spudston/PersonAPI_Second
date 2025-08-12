@@ -11,7 +11,8 @@ namespace PersonAPI_Second.Domain
         public DateOnly DOB { get; set; }
         public required string Address { get; set; }
 
-        private Person() { }
+        // This is set to public just to make the integration testing simpler for now
+        public Person() { }
 
         [SetsRequiredMembers]
         public Person (string firstName, string lastName, DateOnly dOB, string address)
