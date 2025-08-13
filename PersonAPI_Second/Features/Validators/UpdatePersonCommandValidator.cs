@@ -2,7 +2,7 @@
 
 namespace PersonAPI_Second.Features.Validators
 {
-    public class UpdatePersonCommandValidator : AbstractValidator<UpdatePersonCommand>
+    public class UpdatePersonCommandValidator : AbstractValidator<UpdatePersonWithIdCommand>
     {
         public UpdatePersonCommandValidator()
         {

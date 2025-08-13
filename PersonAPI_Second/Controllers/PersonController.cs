@@ -18,6 +18,10 @@ namespace PersonAPI_Second.Controllers
          * Including ("{id}") is to specify the entity that we want to reach
          * (without it, it would look as if we want to modify the entire directory, 
          * unless specified WITHIN the function- this is more risky)
+         * 
+         * It isn't needed when creating an instance because we aren't MODIFYING
+         * data, we are modifying the entire table by ADDING data, therefore, specifying
+         * an ID would be illogical
         */
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPersonById(Guid id)
@@ -28,7 +32,7 @@ namespace PersonAPI_Second.Controllers
                 return Ok(person);
         }
 
-        [HttpPost("{id}")]
+        [HttpPost]
         public async Task<IActionResult> CreatePerson(CreatePersonCommand command)
         {
             var personId = await mediatr.Send(command);
@@ -49,9 +53,11 @@ namespace PersonAPI_Second.Controllers
         }
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> PatchPerson(UpdatePersonCommand command)
+        public async Task<IActionResult> PatchPerson([FromRoute] Guid id, UpdatePersonCommand command)
         {
-            var personId = await mediatr.Send(command);
+            var commandWithId = new UpdatePersonWithIdCommand(id, command.FirstName, command.LastName, command.DOB, command.Address);
+
+            var personId = await mediatr.Send(commandWithId);
 
             if (Guid.Empty == personId) return BadRequest();
 

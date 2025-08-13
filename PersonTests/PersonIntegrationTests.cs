@@ -98,7 +98,7 @@ namespace PersonTests
 
             var updatedDOB = DateOnly.FromDateTime(new DateTime(1981, 5, 12));
 
-            var updatedPerson= new UpdatePersonCommand(personId, "Bart", "Simpson", updatedDOB, "742 Evergreen Terrace");
+            var updatedPerson= new UpdatePersonCommand("Bart", "Simpson", updatedDOB, "742 Evergreen Terrace");
 
             var updatedResponse = await client.PatchAsJsonAsync($"/api/Person/{personId}", updatedPerson);
 
@@ -141,7 +141,7 @@ namespace PersonTests
 
             var updatedDOB = DateOnly.FromDateTime(new DateTime(2100, 5, 12));
 
-            var invalidPerson = new UpdatePersonCommand(personId, "Bart", "Simpson", updatedDOB, "742 Evergreen Terrace");
+            var invalidPerson = new UpdatePersonCommand("Bart", "Simpson", updatedDOB, "742 Evergreen Terrace");
 
             var response = await client.PatchAsJsonAsync($"/api/Person/{personId}", invalidPerson);
 

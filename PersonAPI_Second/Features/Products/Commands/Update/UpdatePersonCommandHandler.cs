@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using PersonAPI_Second.Persistence;
 
-public class UpdatePersonCommandHandler(AppDbContext context) : IRequestHandler<UpdatePersonCommand, Guid>
+public class UpdatePersonCommandHandler(AppDbContext context) : IRequestHandler<UpdatePersonWithIdCommand, Guid>
 {
-    public async Task<Guid> Handle(UpdatePersonCommand command, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(UpdatePersonWithIdCommand command, CancellationToken cancellationToken)
     {
         var person = await context.Persons.FindAsync(command.Id);
 
