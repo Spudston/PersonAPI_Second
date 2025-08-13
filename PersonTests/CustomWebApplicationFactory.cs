@@ -42,30 +42,8 @@ namespace PersonTests
                     var db = scopedServices.GetRequiredService<AppDbContext>();
                     db.Database.EnsureDeleted();
                     db.Database.Migrate();
-                    //SeedDatabase(db);
                 }
             });
         }
-
-        //private void SeedDatabase(AppDbContext db)
-        //{
-        //    db.Persons.AddRange(
-        //        new Person
-        //        {
-        //            FirstName = "Homer",
-        //            LastName = "Simpson",
-        //            DOB = DateOnly.FromDateTime(new DateTime(1960, 12, 10)),
-        //            Address = "742 Evergreen Terrace"
-        //        },
-        //        new Person
-        //        {
-        //            FirstName = "Patrick",
-        //            LastName = "Star",
-        //            DOB = DateOnly.FromDateTime(new DateTime(1992, 10, 11)),
-        //            Address = "Rock"
-        //        }
-        //    );
-        //    db.SaveChanges();
-        //}
     }
 }
